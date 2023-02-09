@@ -1,5 +1,4 @@
 from django import forms
-from django.conf import settings
 from django.test import Client, TestCase
 from django.urls import reverse
 
@@ -105,4 +104,3 @@ class PostPagesTests(TestCase):
             with self.subTest(value=value):
                 form_field = response.context["form"].fields[value]
                 self.assertIsInstance(form_field, expected)
-

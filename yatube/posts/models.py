@@ -26,7 +26,7 @@ class Post(models.Model):
         null=True,
         related_name='posts',
         on_delete=models.SET_NULL)
-    
+
     def __str__(self) -> str:
         return self.text[:15]
 
