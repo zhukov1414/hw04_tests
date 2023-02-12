@@ -139,3 +139,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_URL = '/static/'
 
 NUMBER_POSTS = 10
+
+COUNT = 15

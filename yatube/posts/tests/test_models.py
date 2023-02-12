@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
@@ -26,4 +27,4 @@ class PostModelTest(TestCase):
         post = PostModelTest.post
         group = PostModelTest.group
         self.assertEqual(str(self.group), group.title)
-        self.assertEqual(str(self.post), post.text[:15])
+        self.assertEqual(str(self.post), post.text[:settings.COUNT])

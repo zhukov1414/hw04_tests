@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -28,7 +29,7 @@ class Post(models.Model):
         on_delete=models.SET_NULL)
 
     def __str__(self) -> str:
-        return self.text[:15]
+        return self.text[:settings.COUNT]
 
     class Meta():
         ordering = ['-pub_date']
