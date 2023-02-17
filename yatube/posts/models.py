@@ -29,7 +29,7 @@ class Post(models.Model):
         on_delete=models.SET_NULL)
 
     def __str__(self) -> str:
-        return self.text[:settings.COUNT]
+        return self.text[:settings.COUNT_POSTS]
 
     class Meta():
         ordering = ['-pub_date']

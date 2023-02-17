@@ -27,4 +27,4 @@ class PostModelTest(TestCase):
         post = PostModelTest.post
         group = PostModelTest.group
         self.assertEqual(str(self.group), group.title)
-        self.assertEqual(str(self.post), post.text[:settings.COUNT])
+        self.assertEqual(str(self.post), post.text[:settings.COUNT_POSTS])

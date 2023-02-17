@@ -42,16 +42,6 @@ class PostURLTests(TestCase):
                 self.assertTemplateUsed(response, template)
                 self.assertEqual(response.status_code, HTTPStatus.OK)
 
-    def test_home_url_exists_at_desired_location(self):
-        """Страница / доступна любому пользователю."""
-        url_name = {'/': 'posts/index.html'}
-
-        for url, template in url_name.items():
-            with self.subTest(url=url):
-                response = self.authorized_client.get(url)
-                self.assertTemplateUsed(response, template)
-                self.assertEqual(response.status_code, HTTPStatus.OK)
-
     def test_posts_post_id_edit_url_exists_at_author(self):
         """Страницы доступные только автору."""
         url_names = {
