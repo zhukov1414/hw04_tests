@@ -1,7 +1,3 @@
-"""
-Файл тестирования html-страничек
-"""
-
 from django import forms
 from django.test import Client, TestCase
 from django.urls import reverse
@@ -48,7 +44,7 @@ class PostPagesTests(TestCase):
             "posts:post_create": {},
         }
         cls.reverse_names = {reverse_name: reverse(reverse_name,
-                                                   kwargs=cls.templates_pages_args[reverse_name])
+                                    kwargs=cls.templates_pages_args[reverse_name])
                              for reverse_name in cls.templates_pages_names}
 
     def setUp(self):
@@ -60,14 +56,16 @@ class PostPagesTests(TestCase):
         """URL-адрес использует соответствующий шаблон."""
         for reverse_name, template_name in self.templates_pages_names.items():
             with self.subTest(reverse_name=reverse_name):
-                response = self.authorized_client.get(self.reverse_names[reverse_name])
+                response = self.authorized_client.get(self.reverse_names
+                                                      [reverse_name])
                 self.assertTemplateUsed(response, template_name)
 
     def test_index_show_correct_context(self):
         """Список постов в шаблоне index равен ожидаемому контексту."""
 
         # Тестирование гостя
-        response = self.guest_client.get(self.reverse_names["posts:index"])
+        response = self.guest_client.get(self.reverse_names
+                                         ["posts:index"])
         first_object = response.context['page_obj'][0]
         obj_data = {
             first_object.text: 'Тестовый пост',
@@ -79,7 +77,8 @@ class PostPagesTests(TestCase):
                 self.assertEqual(obj, data)
 
         # Тестирование аворизованного пользователя
-        response = self.authorized_client.get(self.reverse_names['posts:group_list'])
+        response = self.authorized_client.get(self.reverse_names
+                                              ['posts:group_list'])
         first_obj = response.context['page_obj'][0]
         obj_data = {
             first_obj.text: 'Тестовый пост',
@@ -92,7 +91,8 @@ class PostPagesTests(TestCase):
 
     def test_create_edit_show_correct_context(self):
         """Шаблон create_edit сформирован с правильным контекстом."""
-        response = self.authorized_client.get(self.reverse_names["posts:post_edit"])
+        response = self.authorized_client.get(self.reverse_names
+                                              ["posts:post_edit"])
         form_fields = {
             "text": forms.fields.CharField,
             "group": forms.models.ModelChoiceField,
@@ -102,7 +102,8 @@ class PostPagesTests(TestCase):
                 form_field = response.context["form"].fields[value]
                 self.assertIsInstance(form_field, expected)
 
-        response = self.authorized_client.get(self.reverse_names["posts:post_create"])
+        response = self.authorized_client.get(self.reverse_names
+                                              ["posts:post_create"])
         form_fields = {
             "text": forms.fields.CharField,
             'group': forms.fields.ChoiceField,
