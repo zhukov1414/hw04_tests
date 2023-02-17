@@ -36,7 +36,7 @@ class PostPagesTests(TestCase):
         }
 
         # Аргументы точек сайта
-        cls.templates_pages_args = {
+        cls.templates_args = {
             "posts:index": {},
             "posts:group_list": {'slug': cls.group.slug},
             "posts:profile": {"username": cls.post.author},
@@ -44,10 +44,9 @@ class PostPagesTests(TestCase):
             "posts:post_edit": {"post_id": cls.post.id},
             "posts:post_create": {},
         }
-        cls.reverse_names = {reverse_name:
-                            reverse(reverse_name,
-                                    kwargs=cls.templates_pages_args
-                                    [reverse_name])
+        cls.reverse_names = {reverse_name: reverse(reverse_name,
+                                                   kwargs=cls.templates_args
+                                                   [reverse_name])
                              for reverse_name in cls.templates_pages_names}
 
     def setUp(self):
