@@ -45,9 +45,9 @@ class PostPagesTests(TestCase):
             "posts:post_create": {},
         }
         cls.reverse_names = {reverse_name:
-                                 reverse(reverse_name,
-                                         kwargs=cls.templates_pages_args
-                                         [reverse_name])
+                            reverse(reverse_name,
+                                    kwargs=cls.templates_pages_args
+                                    [reverse_name])
                              for reverse_name in cls.templates_pages_names}
 
     def setUp(self):
